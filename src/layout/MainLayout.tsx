@@ -2,6 +2,7 @@ import React from 'react';
 import { AppstoreOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import logo from '../assets/favicon.png';
+import { Outlet } from 'react-router-dom';
 
 const { Content, Sider } = Layout;
 
@@ -89,7 +90,7 @@ const MainLayout: React.FC = () => {
                                 borderRadius: borderRadiusLG,
                             }}
                         >
-                            content
+                            <Outlet />
                         </div>
                     </Content>
                 </div>
