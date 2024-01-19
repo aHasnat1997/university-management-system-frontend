@@ -1,15 +1,49 @@
 import React from 'react';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { AppstoreOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
-import logo from '../assets/favicon.png'
+import logo from '../assets/favicon.png';
 
 const { Content, Sider } = Layout;
 
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-    (icon, index) => ({
-        key: String(index + 1),
-        icon: React.createElement(icon),
-        label: `nav ${index + 1}`,
+const items = [
+    {
+        title: 'Dashboard',
+        icon: AppstoreOutlined
+    },
+    {
+        title: 'Dashboard',
+        icon: AppstoreOutlined,
+        child: [
+            {
+                title: 'Dashboard'
+            },
+            {
+                title: 'Dashboard'
+            },
+        ]
+    },
+    {
+        title: 'Dashboard',
+        icon: AppstoreOutlined
+    },
+    {
+        title: 'Dashboard',
+        icon: AppstoreOutlined,
+        child: [
+            {
+                title: 'Dashboard'
+            }
+        ]
+    },
+].map(
+    (item, i) => ({
+        key: i,
+        icon: React.createElement(item.icon),
+        label: item.title,
+        children: item.child?.map((child, i) => ({
+            key: i,
+            label: child.title,
+        }))
     }),
 );
 
@@ -23,12 +57,12 @@ const MainLayout: React.FC = () => {
             <Sider
                 breakpoint="lg"
                 collapsedWidth="0"
-                onBreakpoint={(broken) => {
-                    console.log(broken);
-                }}
-                onCollapse={(collapsed, type) => {
-                    console.log(collapsed, type);
-                }}
+            // onBreakpoint={(broken) => {
+            //     console.log(broken);
+            // }}
+            // onCollapse={(collapsed, type) => {
+            //     console.log(collapsed, type);
+            // }}
             >
                 <div
                     style={{
@@ -41,7 +75,7 @@ const MainLayout: React.FC = () => {
                     <img src={logo} alt="logo" style={{ width: '3rem', height: '3rem' }} />
                     <h1>University <br /> Management</h1>
                 </div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']} items={items} />
             </Sider>
             <Layout>
                 {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
