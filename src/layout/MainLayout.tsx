@@ -66,6 +66,7 @@ const MainLayout: React.FC = () => {
             // }}
             >
                 <div
+                    // className='text-white'
                     style={{
                         margin: '2rem .5rem',
                         color: '#fff',
