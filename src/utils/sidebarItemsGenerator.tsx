@@ -3,7 +3,7 @@ import { adminPaths } from "../routes/admin.route";
 import { TUserRoutePath } from "../types";
 import { NavLink } from "react-router-dom";
 
-const role: string = 'admin'
+const role: string = 'admin';
 
 function sidebarItemsGenerator() {
   let currentRoute: TUserRoutePath[] = [];
@@ -16,7 +16,7 @@ function sidebarItemsGenerator() {
     key: item.title,
     icon: createElement(item.icon ? item.icon : ''),
     label: item.path ? <NavLink to={item.path}>{item.title}</NavLink> : item.title,
-    children: item.child?.map(child => ({
+    children: item.children?.map(child => ({
       key: child.title,
       label: child.path ? <NavLink to={child.path}>{child.title}</NavLink> : child.title,
     }))

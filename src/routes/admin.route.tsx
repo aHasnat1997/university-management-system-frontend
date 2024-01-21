@@ -16,7 +16,7 @@ export const adminPaths: TUserRoutePath[] = [
   {
     title: 'User Management',
     icon: UsergroupAddOutlined,
-    child: [
+    children: [
       {
         path: '/create-admin',
         title: 'Create Admin',
