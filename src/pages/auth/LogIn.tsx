@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import Lottie from 'lottie-react';
-import login from '../../assets/login.json';
+import lottieLogin from '../../assets/login.json';
 import { useNavigate } from 'react-router-dom';
+import { useLoginMutation } from '../../redux/features/auth/authApi';
 
 type FieldType = {
     username?: string;
@@ -11,23 +12,35 @@ type FieldType = {
 };
 
 const LogIn: React.FC = () => {
+    const [loginUser, data] = useLoginMutation();
     const navigate = useNavigate();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onFinish = (values: any) => {
-        console.log('Success:', values);
-        navigate('/');
+        // {
+        //     "id": "A-0001",
+        //     "password": "#Password123"
+        // }
+        const userData = {
+            id: values.username,
+            password: values.password
+        }
+        loginUser(userData);
+        console.log(data);
+        if (data.isSuccess === true) {
+            navigate('/');
+        }
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
+    // const onFinishFailed = (errorInfo: any) => {
+    //     console.log('Failed:', errorInfo);
+    // };
 
     return (<div style={{ width: '50%', height: '100vh', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ width: '50rem' }}>
-                <Lottie animationData={login} loop={true} />
+                <Lottie animationData={lottieLogin} loop={true} />
             </div>
             <Form
                 name="basic"
@@ -36,7 +49,7 @@ const LogIn: React.FC = () => {
                 style={{ width: '100%' }}
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
+                // onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
                 <Form.Item<FieldType>
