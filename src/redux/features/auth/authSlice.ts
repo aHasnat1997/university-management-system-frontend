@@ -1,12 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type TUserInfo = {
+  id: null | string,
+  email: null | string,
+  role: null | string
+}
+
+const initialState: TUserInfo = {
+  id: null,
+  email: null,
+  role: null
+}
 
 export const authSlice = createSlice({
   name: 'userInfo',
-  initialState: {},
+  initialState,
   reducers: {
     setUser: (state, action) => {
-      state = action.payload
+      const { id, email, role } = action.payload
+      state.id = id,
+        state.email = email,
+        state.role = role
     }
   }
 });

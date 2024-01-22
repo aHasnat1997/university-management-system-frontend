@@ -30,7 +30,11 @@ const LogIn: React.FC = () => {
         }
         loginUser(userData);
         if (data.data) {
-            dispatch(setUser(data.data.doc))
+            dispatch(setUser({
+                id: data.data.doc.id,
+                email: data.data.doc.email,
+                role: data.data.doc.role
+            }))
         }
         if (data.isSuccess) {
             navigate('/');
