@@ -1,9 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { baseApi } from './api/baseApi'
+import { configureStore } from '@reduxjs/toolkit';
+import { baseApi } from './api/baseApi';
+import userInfoReducer from './features/auth/authSlice';
 
 export const store = configureStore({
     reducer: {
-        [baseApi.reducerPath]: baseApi.reducer
+        [baseApi.reducerPath]: baseApi.reducer,
+        userInfo: userInfoReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(baseApi.middleware)

@@ -4,6 +4,8 @@ import Lottie from 'lottie-react';
 import lottieLogin from '../../assets/login.json';
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../redux/features/auth/authApi';
+import { useAppDispatch } from '../../redux/hook';
+import { setUser } from '../../redux/features/auth/authSlice';
 
 type FieldType = {
     username?: string;
@@ -14,6 +16,7 @@ type FieldType = {
 const LogIn: React.FC = () => {
     const [loginUser, data] = useLoginMutation();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onFinish = (values: any) => {
@@ -26,10 +29,13 @@ const LogIn: React.FC = () => {
             password: values.password
         }
         loginUser(userData);
-        console.log(data);
-        if (data.isSuccess === true) {
+        if (data.data) {
+            dispatch(setUser(data.data.doc))
+        }
+        if (data.isSuccess) {
             navigate('/');
         }
+        console.log(data.data);
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -77,7 +83,10 @@ const LogIn: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                    >
                         Submit
                     </Button>
                 </Form.Item>

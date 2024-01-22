@@ -4,6 +4,7 @@ import { Avatar, Layout, Menu, theme } from 'antd';
 import logo from '../assets/favicon.png';
 import { Outlet } from 'react-router-dom';
 import sidebarItemsGenerator from '../utils/sidebarItemsGenerator';
+import { useAppSelector } from '../redux/hook';
 
 const { Content, Sider, Header } = Layout;
 
@@ -40,6 +41,13 @@ const { Content, Sider, Header } = Layout;
 // );
 
 const MainLayout: React.FC = () => {
+
+    const userData = useAppSelector((state) => state.userInfo);
+    console.log(userData);
+
+
+
+
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
