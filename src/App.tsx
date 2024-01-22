@@ -1,7 +1,6 @@
 import MainLayout from "./layout";
 
 function App() {
-
   return (
     <>
       <MainLayout />
