@@ -1,11 +1,11 @@
 import React from 'react';
-// import { AppstoreOutlined, UsergroupAddOutlined } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Layout, Menu, theme } from 'antd';
 import logo from '../assets/favicon.png';
 import { Outlet } from 'react-router-dom';
 import sidebarItemsGenerator from '../utils/sidebarItemsGenerator';
 
-const { Content, Sider } = Layout;
+const { Content, Sider, Header } = Layout;
 
 // const items = [
 //     {
@@ -49,12 +49,6 @@ const MainLayout: React.FC = () => {
             <Sider
                 breakpoint="lg"
                 collapsedWidth="0"
-            // onBreakpoint={(broken) => {
-            //     console.log(broken);
-            // }}
-            // onCollapse={(collapsed, type) => {
-            //     console.log(collapsed, type);
-            // }}
             >
                 <div
                     // className='text-white'
@@ -70,11 +64,25 @@ const MainLayout: React.FC = () => {
                 </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['Dashboard']} items={sidebarItemsGenerator()} />
             </Sider>
-            <Layout>
-                {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
+            <Layout style={{ maxHeight: '100vh', }}>
+                <Header style={{ padding: 0, background: colorBgContainer }}>
+                    <div
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            padding: '0 5rem',
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+                    </div>
+                </Header>
                 <div style={{ overflow: 'auto', height: '100vh' }}>
                     <Content style={{ margin: '24px 16px 0' }}>
                         <div
+                            className='no-scrollbar'
                             style={{
                                 padding: 24,
                                 minHeight: '100vh',

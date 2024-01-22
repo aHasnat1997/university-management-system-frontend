@@ -10,7 +10,16 @@
 
 .demo {
     margin: 2rem .5rem;
-    color: #fff;
+    color: #ff0000;
     display: flex;
     align-items: center;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
