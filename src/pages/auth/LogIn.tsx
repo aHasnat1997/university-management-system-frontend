@@ -39,7 +39,7 @@ const LogIn: React.FC = () => {
         if (data.isSuccess) {
             navigate('/');
         }
-        console.log(data.data);
+        // console.log(data.data);
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

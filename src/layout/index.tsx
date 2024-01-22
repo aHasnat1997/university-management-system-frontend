@@ -1,10 +1,10 @@
 import React from 'react';
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Layout, Menu, theme } from 'antd';
+import { Button, Layout, Menu, theme } from 'antd';
 import logo from '../assets/favicon.png';
 import { Outlet } from 'react-router-dom';
 import sidebarItemsGenerator from '../utils/sidebarItemsGenerator';
-import { useAppSelector } from '../redux/hook';
+import { useAppDispatch, useAppSelector } from '../redux/hook';
+import { logOut } from '../redux/features/auth/authSlice';
 
 const { Content, Sider, Header } = Layout;
 
@@ -41,12 +41,9 @@ const { Content, Sider, Header } = Layout;
 // );
 
 const MainLayout: React.FC = () => {
-
     const userData = useAppSelector((state) => state.userInfo);
+    const dispatch = useAppDispatch();
     console.log(userData);
-
-
-
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -84,7 +81,10 @@ const MainLayout: React.FC = () => {
                             alignItems: 'center'
                         }}
                     >
-                        <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <h2>{userData.email}</h2>
+                            <Button onClick={() => dispatch(logOut())}>Log Out</Button>
+                        </div>
                     </div>
                 </Header>
                 <div style={{ overflow: 'auto', height: '100vh' }}>
